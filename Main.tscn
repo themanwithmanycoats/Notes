@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bmu2qwoojvium"]
+[gd_scene load_steps=12 format=3 uid="uid://bmu2qwoojvium"]
 
 [ext_resource type="Script" uid="uid://dyuu15dw6y7jv" path="res://Objects/Player.gd" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://bwfxgg6a41375" path="res://arlez80-godot-midi-player-g4-79a7ef10a5d4/addons/midi/MidiPlayer.gd" id="2_uu6xs"]
@@ -6,18 +6,23 @@
 [ext_resource type="PackedScene" uid="uid://bxv53nkbu8e4v" path="res://Objects/enemy.tscn" id="4_fos0i"]
 [ext_resource type="AudioStream" uid="uid://5p04mhqqcxq7" path="res://MP3/Pattern 50.wav" id="5_3dxm6"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uu6xs"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-
-[sub_resource type="Sky" id="Sky_r0du0"]
-sky_material = SubResource("ProceduralSkyMaterial_uu6xs")
-
-[sub_resource type="Environment" id="Environment_cm0pq"]
-background_mode = 2
-sky = SubResource("Sky_r0du0")
+[sub_resource type="Environment" id="Environment_fos0i"]
+ambient_light_source = 2
+ambient_light_color = Color(0.544974, 0.544974, 0.544974, 1)
+ambient_light_energy = 0.11
 tonemap_mode = 2
+tonemap_exposure = 0.66
+tonemap_white = 8.84
 glow_enabled = true
+glow_normalized = true
+glow_intensity = 1.5
+glow_strength = 1.22
+glow_bloom = 0.4
+glow_blend_mode = 0
+glow_hdr_threshold = 0.8
+fog_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
+adjustment_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glv2v"]
 albedo_color = Color(0.32549, 0.192157, 1, 1)
@@ -44,7 +49,7 @@ shadow_enabled = true
 sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_cm0pq")
+environment = SubResource("Environment_fos0i")
 
 [node name="Floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.725372, -0.0187321, -6.32871)
