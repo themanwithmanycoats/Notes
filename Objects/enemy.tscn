@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxv53nkbu8e4v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6sraq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_edmjf"]
+albedo_color = Color(0.815686, 0, 0.184314, 1)
+emission_enabled = true
+emission = Color(0.67451, 0.101961, 0.337255, 1)
+emission_energy_multiplier = 1.94
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Enemy" type="CSGBox3D" parent="."]
+material_override = SubResource("ShaderMaterial_6sraq")
+material_overlay = SubResource("StandardMaterial3D_edmjf")
+use_collision = true

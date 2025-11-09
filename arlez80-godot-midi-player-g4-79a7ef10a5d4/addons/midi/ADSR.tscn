@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdvkdv77fslji"]
+
+[ext_resource type="Script" uid="uid://cimxk4c07irwy" path="res://arlez80-godot-midi-player-g4-79a7ef10a5d4/addons/midi/ADSR.gd" id="1"]
+
+[node name="ADSR" type="AudioStreamPlayer"]
+script = ExtResource("1")
+
+[node name="Linked" type="AudioStreamPlayer" parent="."]

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://5p04mhqqcxq7"
+path="res://.godot/imported/Pattern 50.wav-a051f9eb47e5b7a5db26f40fc1da14ba.sample"
+
+[deps]
+
+source_file="res://MP3/Pattern 50.wav"
+dest_files=["res://.godot/imported/Pattern 50.wav-a051f9eb47e5b7a5db26f40fc1da14ba.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
