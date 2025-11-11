@@ -1,4 +1,7 @@
 res://arlez80-godot-midi-player-g4-79a7ef10a5d4/addons/midi/ADSR.tscn
+res://Scripts/Enemy Spawn.gd
 res://Test.tscn
 res://Main.tscn
-res://Objects/enemy.tscn
+res://Objects/Enemy idle.tscn
+res://Objects/Enamy idle.tscn
+res://Objects/Player.gd

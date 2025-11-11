@@ -1,9 +1,12 @@
-AudioStreamPlayer3D
-Node3D
-CSGBox3D
-StaticBody3D
 CollisionShape3D
-Camera3D
+Area3D
+Node3D
+Node
+AudioStreamPlayer3D
 MeshInstance3D
 CharacterBody3D
+AnimationPlayer
+CSGBox3D
+StaticBody3D
+Camera3D
 Node2D

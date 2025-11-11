@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://crsp0oaxxtm42"]
+
+[ext_resource type="PackedScene" uid="uid://1uex24p1i8jn" path="res://Objects/Enemy idle.glb" id="1_1qbwy"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0qurw"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7b4f0"]
+
+[node name="Node3D" type="Area3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0.977479, 0)
+shape = SubResource("SphereShape3D_0qurw")
+
+[node name="Enemy idle" parent="." instance=ExtResource("1_1qbwy")]
+transform = Transform3D(0.66, 0, 0, 0, 0.66, 0, 0, 0, 0.66, 0, 0, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Enemy idle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45553, 0)
+shape = SubResource("SphereShape3D_7b4f0")

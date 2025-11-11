@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dyuu15dw6y7jv" path="res://Objects/Player.gd" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://bwfxgg6a41375" path="res://arlez80-godot-midi-player-g4-79a7ef10a5d4/addons/midi/MidiPlayer.gd" id="2_uu6xs"]
 [ext_resource type="Script" uid="uid://cx1sy1a650ew1" path="res://Scripts/Enemy Spawn.gd" id="3_cm0pq"]
-[ext_resource type="PackedScene" uid="uid://bxv53nkbu8e4v" path="res://Objects/enemy.tscn" id="4_fos0i"]
+[ext_resource type="PackedScene" uid="uid://crsp0oaxxtm42" path="res://Objects/Enamy idle.tscn" id="4_fos0i"]
 [ext_resource type="AudioStream" uid="uid://5p04mhqqcxq7" path="res://MP3/Pattern 50.wav" id="5_3dxm6"]
 
 [sub_resource type="Environment" id="Environment_fos0i"]
@@ -57,7 +57,7 @@ material_override = SubResource("StandardMaterial3D_glv2v")
 use_collision = true
 size = Vector3(28.3182, 0.0216064, 46.5266)
 
-[node name="Player" type="CharacterBody3D" parent="."]
+[node name="Player" type="CharacterBody3D" parent="." groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0536757, -0.0411611, 0.0986605)
 script = ExtResource("1_glv2v")
 
@@ -133,7 +133,6 @@ script = ExtResource("3_cm0pq")
 midi_player = NodePath("../MidiPlayer")
 player = NodePath("../Player")
 enemy_scene = ExtResource("4_fos0i")
-spawn_radius = 30.0
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.16737, -2.23943)
