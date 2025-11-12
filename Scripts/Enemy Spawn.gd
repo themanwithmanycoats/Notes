@@ -4,7 +4,7 @@ extends Node3D
 @export var player: CharacterBody3D
 @export var enemy_scene: PackedScene
 @export var spawn_distance: float = 30.0  # Distance from player
-@export var spawn_height_above_player: float = 10.0  # How high above player
+@export var spawn_height_above_player: float = 20.0  # How high above player
 @export var min_angle: float = -180.0  # Degrees
 @export var max_angle: float = 180.0   # Degrees
 @export var fast_speed: float = 15.0  # Speed when moving to correct Z

@@ -1,15 +1,6 @@
 res://Main.tscn
-res://world_environment_eye.gd
-res://arlez80-godot-midi-player-g4-79a7ef10a5d4/addons/midi/ADSR.tscn
-res://Test.tscn
-res://Objects/Enamy idle.tscn
-res://video_skybox.gd
-res://video_skybox.tscn
+res://Lighting/Lighting affects.tres
+res://skybox.gdshader
+res://add.gd
 res://Scripts/Enemy Spawn.gd
-res://Objects/enemy_movement.gd
-res://arlez80-godot-midi-player-g4-79a7ef10a5d4/addons/midi/MidiPlayer.gd
-res://Objects/Player.gd
-res://Scripts/playthisanimationorgetdeleated.gd
-res://arlez80-godot-midi-player-g4-79a7ef10a5d4/addons/midi/SMF.gd
-res://Scripts/whentouched.gd
-res://Video Skybox.tscn
+res://lighting_controller.gd

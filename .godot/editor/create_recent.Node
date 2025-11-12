@@ -1,8 +1,9 @@
+Node
 MeshInstance3D
+VideoStreamPlayer
 Node3D
 CollisionShape3D
 Area3D
-Node
 AudioStreamPlayer3D
 CharacterBody3D
 AnimationPlayer

@@ -1,36 +1,45 @@
 ea4bc82a6ad023ab7ee23ee620429895
 ::res://::1762653671
 icon.svg::CompressedTexture2D/CompressedTexture2D::6975875901308397961::1757828850::1757828860::1::::<><><>0<>0<>ba85f1ff80e15003b28fd4e7bde6e336<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
-Main.tscn::PackedScene::3271643471727781324::1762875962::0::1::::<><><>0<>0<><>::uid://el5j4gqj8hws::::res://world_environment_eye.gd<>uid://dyuu15dw6y7jv::::res://Objects/Player.gd<>uid://bwfxgg6a41375::::res://arlez80-godot-midi-player-g4-79a7ef10a5d4/addons/midi/MidiPlayer.gd<>uid://cx1sy1a650ew1::::res://Scripts/Enemy Spawn.gd<>uid://crsp0oaxxtm42::::res://Objects/Enamy idle.tscn<>uid://5p04mhqqcxq7::::res://MP3/Pattern 50.wav
-video_skybox.gd::GDScript::8684926058587594638::1762876124::0::1::::<>MeshInstance3D<><>0<>0<><>::
-Test.tscn::PackedScene::1198887509252342577::1762875962::0::1::::<><><>0<>0<><>::
+lighting_controller.gd::GDScript::2929781502398436701::1762914720::0::1::::<>Node<><>0<>0<><>::
+Main.tscn::PackedScene::3271643471727781324::1762914794::0::1::::<><><>0<>0<><>::uid://dyuu15dw6y7jv::::res://Objects/Player.gd<>uid://dk4nhc3evagio::::res://Scripts/add.gd<>uid://deqfvhcwhyb4t::::res://Lighting/Lighting affects.tres<>uid://bwfxgg6a41375::::res://arlez80-godot-midi-player-g4-79a7ef10a5d4/addons/midi/MidiPlayer.gd<>uid://cx1sy1a650ew1::::res://Scripts/Enemy Spawn.gd<>uid://5p04mhqqcxq7::::res://MP3/Pattern 50.wav<>uid://crsp0oaxxtm42::::res://Objects/Enamy idle.tscn<>uid://dekm0l8ak5xhi::::res://skybox.gdshader<>uid://dsk7fsurur7ha::::res://videos/Eye ey ey ey.ogv<>uid://bh0hcqy5310i0::::res://lighting_controller.gd
+skybox.gdshader::Shader::7461435080682817058::1762914794::0::1::::<><><>0<>0<><>::
+Test.tscn::PackedScene/PackedScene::1198887509252342577::1762877446::0::1::::<><><>0<>0<><>::
 ::res://arlez80-godot-midi-player-g4-79a7ef10a5d4/::1757828878
 LICENSE.txt::TextFile/TextFile::-1::1757828878::0::1::::<><><>0<>0<><>::
 readme.md::TextFile/TextFile::-1::1757828878::0::1::::<><><>0<>0<><>::
 ::res://arlez80-godot-midi-player-g4-79a7ef10a5d4/addons/::1757828878
 ::res://arlez80-godot-midi-player-g4-79a7ef10a5d4/addons/midi/::1757828878
 ADSR.gd::GDScript/GDScript::5360540525757602344::1757828878::0::1::::AudioStreamPlayerADSR<>AudioStreamPlayer<><>0<>0<><>::
-ADSR.tscn::PackedScene::2640952828637262918::1762875962::0::1::::<><><>0<>0<><>::uid://cimxk4c07irwy::::res://arlez80-godot-midi-player-g4-79a7ef10a5d4/addons/midi/ADSR.gd
+ADSR.tscn::PackedScene/PackedScene::2640952828637262918::1762877446::0::1::::<><><>0<>0<><>::uid://cimxk4c07irwy::::res://arlez80-godot-midi-player-g4-79a7ef10a5d4/addons/midi/ADSR.gd
 Bank.gd::GDScript/GDScript::4900581861314038720::1757828878::0::1::::Bank<>RefCounted<><>0<>0<><>::
 GMP.gd::GDScript/GDScript::5972130852828885163::1757828878::0::1::::<>EditorPlugin<><>0<>1<><>::
 icon.png::CompressedTexture2D/CompressedTexture2D::6097628962310968299::1757828878::1757828878::1::::<><><>0<>0<>1d85f3620544771663806e7f6ea94229<>res://.godot/imported/icon.png-9c57eeb3c7b7c047d6df1691266ed181.ctex::
-MidiPlayer.gd::GDScript/GDScript::3942304701166017326::1758062596::0::1::::MidiPlayer<>Node<><>0<>0<><>::
+MidiPlayer.gd::GDScript/GDScript::3942304701166017326::1762877312::0::1::::MidiPlayer<>Node<><>0<>0<><>::
 MidiPlayer.tscn::PackedScene/PackedScene::6226392761835080006::1757828878::0::1::::<><><>0<>0<><>::res://addons/midi/MidiPlayer.gd
 plugin.cfg::TextFile/TextFile::-1::1757828878::0::1::::<><><>0<>0<><>::
-SMF.gd::GDScript/GDScript::6980403532415114540::1757828878::0::1::::SMF<>RefCounted<><>0<>0<><>::
+SMF.gd::GDScript/GDScript::6980403532415114540::1762877312::0::1::::SMF<>RefCounted<><>0<>0<><>::
 SoundFont.gd::GDScript/GDScript::6568747479845631858::1757828878::0::1::::SoundFont<>RefCounted<><>0<>0<><>::
 Utility.gd::GDScript/GDScript::1993194291162312689::1757828878::0::1::::<>RefCounted<><>0<>0<><>::
+::res://Lighting/::1762879525
+Lighting affects.tres::Environment/Environment::7473388928095163233::1762911656::0::1::::<><><>0<>0<><>::
 ::res://Midi/::1757829192
 ::res://MP3/::1758067156
 Pattern 50.wav::AudioStreamWAV/AudioStreamWAV::2138201330136558316::1758067520::1758067522::1::::<><><>0<>0<>2c5246c4495057e378840d3c19cd3d95<>res://.godot/imported/Pattern 50.wav-a051f9eb47e5b7a5db26f40fc1da14ba.sample::
 ::res://Objects/::1758035678
-Enamy idle.tscn::PackedScene::6004166644948362125::1762875962::0::1::::<><><>0<>0<><>::uid://1uex24p1i8jn::::res://Objects/Enemy idle.glb
+Enamy idle.tscn::PackedScene/PackedScene::6004166644948362125::1762877446::0::1::::<><><>0<>0<><>::uid://1uex24p1i8jn::::res://Objects/Enemy idle.glb
 Enemy idle.glb::PackedScene/PackedScene::1866482894547326915::1762739876::1762831710::1::::<><><>0<>0<>c0cb2e40ac5424c3c52e16fa055fcc40<>res://.godot/imported/Enemy idle.glb-7561dec7d19c7ca051479057d8c791a9.scn::
 enemy.tscn::PackedScene/PackedScene::4045988230540493031::1762741514::0::1::::<><><>0<>0<><>::
-enemy_movement.gd::GDScript/GDScript::5754819320424120454::1758065886::0::1::::<>Node3D<><>0<>0<><>::
-Player.gd::GDScript::8886344205347036407::1762837828::0::1::::<>CharacterBody3D<><>0<>0<><>::
+enemy_movement.gd::GDScript/GDScript::5754819320424120454::1762877312::0::1::::<>Node3D<><>0<>0<><>::
+Player.gd::GDScript/GDScript::8886344205347036407::1762877312::0::1::::<>CharacterBody3D<><>0<>0<><>::
 ::res://Scripts/::1758053330
-Enemy Spawn.gd::GDScript::6441995724646694942::1762837828::0::1::::<>Node3D<><>0<>0<><>::
-playthisanimationorgetdeleated.gd::GDScript/GDScript::8408351321192084568::1762744016::0::1::::<>Node3D<><>0<>0<><>::
-whentouched.gd::GDScript/GDScript::7086722380711536492::1762744540::0::1::::<>Area3D<><>0<>0<><>::
+add.gd::GDScript/GDScript::7921819412301694726::1762906532::0::1::::<>Node3D<><>0<>0<><>::
+Enemy Spawn.gd::GDScript::6441995724646694942::1762912118::0::1::::<>Node3D<><>0<>0<><>::
+new_gd_script.gd::GDScript::5281524650787804057::1762898874::0::1::::<>RefCounted<><>0<>0<><>::
+playthisanimationorgetdeleated.gd::GDScript/GDScript::8408351321192084568::1762877312::0::1::::<>Node3D<><>0<>0<><>::
+whentouched.gd::GDScript/GDScript::7086722380711536492::1762877312::0::1::::<>Area3D<><>0<>0<><>::
 ::res://videos/::1762874800
+_MConverter.eu_Eye ey ey.webp::CompressedTexture2D/CompressedTexture2D::3771461819453247365::1762881208::1762881208::0::::<><><>0<>0<>6473b96465c9f29018ade49e63b318cb<>::
+Eye ey ey ey.ogv::VideoStreamTheora/VideoStreamTheora::8445257863958760406::1762911474::0::1::::<><><>0<>0<><>::
+Eye ey ey.ogv::VideoStreamTheora/VideoStreamTheora::2653357144236348875::1762880050::0::1::::<><><>0<>0<><>::
+Eye ey ey.webm::OtherFile/OtherFile::-1::1762874826::0::1::::<><><>0<>0<><>::

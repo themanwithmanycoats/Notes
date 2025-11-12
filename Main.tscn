@@ -1,33 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://bmu2qwoojvium"]
+[gd_scene load_steps=18 format=3 uid="uid://bmu2qwoojvium"]
 
 [ext_resource type="Script" uid="uid://dyuu15dw6y7jv" path="res://Objects/Player.gd" id="1_glv2v"]
-[ext_resource type="Script" path="res://video_skybox.gd" id="1_trn2v"]
+[ext_resource type="Script" uid="uid://dk4nhc3evagio" path="res://Scripts/add.gd" id="1_trn2v"]
+[ext_resource type="Environment" uid="uid://deqfvhcwhyb4t" path="res://Lighting/Lighting affects.tres" id="2_lgr22"]
 [ext_resource type="Script" uid="uid://bwfxgg6a41375" path="res://arlez80-godot-midi-player-g4-79a7ef10a5d4/addons/midi/MidiPlayer.gd" id="2_uu6xs"]
 [ext_resource type="Script" uid="uid://cx1sy1a650ew1" path="res://Scripts/Enemy Spawn.gd" id="3_cm0pq"]
-[ext_resource type="PackedScene" uid="uid://crsp0oaxxtm42" path="res://Objects/Enamy idle.tscn" id="4_fos0i"]
 [ext_resource type="AudioStream" uid="uid://5p04mhqqcxq7" path="res://MP3/Pattern 50.wav" id="5_3dxm6"]
-
-[sub_resource type="Environment" id="Environment_3dxm6"]
-background_mode = 1
-tonemap_mode = 2
-tonemap_exposure = 2.53
-tonemap_white = 0.71
-glow_enabled = true
-glow_normalized = true
-glow_intensity = 1.7
-glow_strength = 1.15
-glow_bloom = 0.71
-glow_blend_mode = 0
-glow_hdr_threshold = 1.13
-fog_enabled = true
-fog_light_color = Color(0, 0, 0, 1)
-fog_light_energy = 1.15
-fog_density = 0.001
-fog_sky_affect = 0.405
-adjustment_enabled = true
-adjustment_brightness = 2.91
-adjustment_contrast = 1.06
-adjustment_saturation = 0.63
+[ext_resource type="PackedScene" uid="uid://crsp0oaxxtm42" path="res://Objects/Enamy idle.tscn" id="6_03owx"]
+[ext_resource type="Shader" uid="uid://dekm0l8ak5xhi" path="res://skybox.gdshader" id="7_03owx"]
+[ext_resource type="VideoStream" uid="uid://dsk7fsurur7ha" path="res://videos/Eye ey ey ey.ogv" id="7_trn2v"]
+[ext_resource type="Script" uid="uid://bh0hcqy5310i0" path="res://lighting_controller.gd" id="10_wkp8b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glv2v"]
 albedo_color = Color(0.32549, 0.192157, 1, 1)
@@ -43,6 +25,18 @@ albedo_color = Color(0.81061, 0.180115, 0.0934898, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0du0"]
 albedo_color = Color(0.250764, 0.702993, 8.27849e-06, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lgr22"]
+render_priority = 0
+shader = ExtResource("7_03owx")
+shader_parameter/base_brightness = 0.15
+shader_parameter/glow_intensity = 2.5
+shader_parameter/glow_color = Vector3(0.2, 0.6, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_trn2v"]
+material = SubResource("ShaderMaterial_lgr22")
+radius = 1000.0
+height = 1000.0
+
 [node name="World" type="Node3D"]
 script = ExtResource("1_trn2v")
 
@@ -55,16 +49,16 @@ shadow_enabled = true
 sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_3dxm6")
+environment = ExtResource("2_lgr22")
 
 [node name="Floor" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.725372, -0.0187321, -6.32871)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.758238, 1.69672, -6.32837)
 material_override = SubResource("StandardMaterial3D_glv2v")
 use_collision = true
 size = Vector3(28.3182, 0.0216064, 46.5266)
 
 [node name="Player" type="CharacterBody3D" parent="." groups=["player"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0536757, -0.0411611, 0.0986605)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0536757, 1.67429, 0.0986605)
 script = ExtResource("1_glv2v")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
@@ -81,46 +75,46 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37516, 0)
 shape = SubResource("ConvexPolygonShape3D_3dxm6")
 
 [node name="Platform_1" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4539, 0.496003, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4539, 2.21145, 0)
 material_override = SubResource("StandardMaterial3D_uu6xs")
 use_collision = true
 size = Vector3(5, 1, 5)
 
 [node name="Platform_2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4539, 0.787782, -6.50349)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4539, 2.50323, -6.50349)
 material_override = SubResource("StandardMaterial3D_uu6xs")
 use_collision = true
 size = Vector3(5, 1.58356, 5)
 
 [node name="Platform_3" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4459, 1.36306, -13.7683)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4459, 3.07851, -13.7683)
 material_override = SubResource("StandardMaterial3D_uu6xs")
 use_collision = true
 size = Vector3(5, 2.71292, 5)
 
 [node name="walls_1" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5187, 1.36066, -6.32748)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5187, 3.07611, -6.32748)
 visible = false
 material_override = SubResource("StandardMaterial3D_r0du0")
 use_collision = true
 size = Vector3(1, 2.89856, 46.6489)
 
 [node name="Walls_2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2453, 1.36066, -6.32748)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2453, 3.07611, -6.32748)
 visible = false
 material_override = SubResource("StandardMaterial3D_r0du0")
 use_collision = true
 size = Vector3(1, 2.89856, 46.6489)
 
 [node name="Walls_3" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.58028, 1.36066, 16.4848)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.58028, 3.07611, 16.4848)
 visible = false
 material_override = SubResource("StandardMaterial3D_r0du0")
 use_collision = true
 size = Vector3(26.6927, 2.89856, 1.02428)
 
 [node name="Walls_4" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.58028, 1.36066, -29.1054)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.58028, 3.07611, -29.1054)
 visible = false
 material_override = SubResource("StandardMaterial3D_r0du0")
 use_collision = true
@@ -138,7 +132,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.07436, 0)
 script = ExtResource("3_cm0pq")
 midi_player = NodePath("../MidiPlayer")
 player = NodePath("../Player")
-enemy_scene = ExtResource("4_fos0i")
+enemy_scene = ExtResource("6_03owx")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.16737, -2.23943)
@@ -146,3 +140,30 @@ stream = ExtResource("5_3dxm6")
 volume_db = -26.667
 unit_size = 28.24
 autoplay = true
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("7_trn2v")
+volume_db = -20.65
+autoplay = true
+loop = true
+
+[node name="sky box" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("SphereMesh_trn2v")
+
+[node name="Lighting Controller" type="Node" parent="." node_paths=PackedStringArray("world_environment", "midi_player")]
+script = ExtResource("10_wkp8b")
+world_environment = NodePath("../WorldEnvironment")
+midi_player = NodePath("../MidiPlayer")
+base_glow_intensity = 0.5
+pulse_glow_intensity = 1.0
+base_brightness = 5.0
+pulse_brightness = 10.0
+channel_colors = Array[Color]([])
+enable_color_rotator = false
+note_pitch_affects_color = true
+pulse_attack = 2.22
+pulse_release = 0.6
