@@ -19,47 +19,47 @@ extends Node
 
 @export_group("Glow")
 ## Base glow intensity when no beat is playing (Thumper default: 2.5)
-@export var base_glow_intensity: float = 2.5
+@export var base_glow_intensity: float = 4.65
 ## Peak glow intensity on beat hits (Thumper default: 5.0)
-@export var pulse_glow_intensity: float = 5.0
+@export var pulse_glow_intensity: float = 4.7
 ## Base bloom amount - how much glow spreads (0.0-1.0)
-@export var base_glow_bloom: float = 0.6
+@export var base_glow_bloom: float = 0.011
 ## Peak bloom amount on beats - maximum glow spread
-@export var pulse_glow_bloom: float = 1.0
+@export var pulse_glow_bloom: float = 0.015
 ## Base glow strength multiplier
-@export var base_glow_strength: float = 1.5
+@export var base_glow_strength: float = 0.3
 ## Peak glow strength on beats
-@export var pulse_glow_strength: float = 2.0
+@export var pulse_glow_strength: float = 1.0
 ## Base HDR threshold - lower = more things glow (0.0-1.0)
-@export var base_glow_hdr_threshold: float = 0.6
+@export var base_glow_hdr_threshold: float = 0.835
 ## Peak HDR threshold on beats - lower = even more glow
-@export var pulse_glow_hdr_threshold: float = 0.3
+@export var pulse_glow_hdr_threshold: float = 0.835
 ## Base HDR scale - intensity multiplier for HDR colors
-@export var base_glow_hdr_scale: float = 2.5
+@export var base_glow_hdr_scale: float = 2.415
 ## Peak HDR scale on beats - maximum HDR intensity
 @export var pulse_glow_hdr_scale: float = 4.0
 
 @export_group("Tonemap")
 ## Base exposure - overall brightness (Thumper default: 1.3)
-@export var base_exposure: float = 1.3
+@export var base_exposure: float = 4.96
 ## Peak exposure on beats - brightest point
-@export var pulse_exposure: float = 2.0
+@export var pulse_exposure: float = 9.055
 ## Base white point - where colors clip to white
-@export var base_white: float = 8.0
+@export var base_white: float = 8.995
 ## Peak white point on beats - more aggressive clipping
 @export var pulse_white: float = 12.0
 
 @export_group("Adjustments")
 ## Base brightness adjustment (1.0 = normal)
-@export var base_brightness: float = 1.0
+@export var base_brightness: float = 12.53
 ## Peak brightness on beats
-@export var pulse_brightness: float = 1.3
+@export var pulse_brightness: float = 13.49
 ## Base contrast - separation between dark and light (1.0 = normal, higher = more contrast)
-@export var base_contrast: float = 1.4
+@export var base_contrast: float = 1.415
 ## Peak contrast on beats - maximum separation
-@export var pulse_contrast: float = 1.8
+@export var pulse_contrast: float = 1.415
 ## Base saturation - color intensity (1.0 = normal, higher = more vivid)
-@export var base_saturation: float = 1.5
+@export var base_saturation: float = 1.425
 ## Peak saturation on beats - hyper-vivid colors
 @export var pulse_saturation: float = 2.2
 
@@ -67,7 +67,7 @@ extends Node
 ## Enable/disable all color flash effects
 @export var enable_color_flash: bool = true
 ## Intensity of color flashes (0.0-1.0, higher = more visible)
-@export var color_flash_intensity: float = 0.8
+@export var color_flash_intensity: float = 0.1
 
 @export_subgroup("MIDI Channel Mode")
 ## Use predefined colors per MIDI channel (disables Color Rotator if true)
@@ -114,9 +114,9 @@ extends Node
 ## Enable fog density pulsing on beats
 @export var enable_fog_pulse: bool = true
 ## Base fog density (lower = less fog, 0.005 = subtle)
-@export var base_fog_density: float = 0.005
+@export var base_fog_density: float = 0.05
 ## Peak fog density on beats
-@export var pulse_fog_density: float = 0.03
+@export var pulse_fog_density: float = 0.001
 ## Base fog light energy (brightness of fog lighting)
 @export var base_fog_light_energy: float = 0.5
 ## Peak fog light energy on beats
@@ -132,7 +132,7 @@ extends Node
 
 @export_group("Background")
 ## Enable background color flashing on beats
-@export var enable_background_pulse: bool = true
+@export var enable_background_pulse: bool = false
 ## Base background color (usually pure black for Thumper style)
 @export var base_background_color: Color = Color(0.0, 0.0, 0.0)
 ## Duration of background flash in seconds (lower = quicker flash)
@@ -154,12 +154,20 @@ extends Node
 ## Print color selection mode and debug info to console
 @export var debug_mode: bool = false
 
+@export_group("Skybox Override")
+## Disable all lighting effects on skybox materials (allows video skyboxes to remain visible)
+@export var disable_skybox_override: bool = true
+## Tag to identify skybox nodes (add this tag to your skybox in Node → Groups)
+@export var skybox_group_name: String = "skybox"
+
 # Internal state
 var environment: Environment
 var pulse_progress: float = 0.0
+var target_pulse_progress: float = 0.0
 var current_channel_color: Color = Color.WHITE
 var target_channel_color: Color = Color.WHITE
 var background_flash_progress: float = 0.0
+var target_background_flash: float = 0.0
 
 # Color rotator state
 var hue_progress: float = 0.0
@@ -192,7 +200,21 @@ func _ready():
 	else:
 		push_warning("No MIDI player assigned to LightingController")
 	
+	# Disable environment effects on skybox if enabled
+	if disable_skybox_override:
+		_setup_skybox_override()
+	
 	print("=== Lighting Controller Ready ===")
+
+func _setup_skybox_override():
+	"""Prevent lighting from affecting skybox visibility"""
+	var skybox_nodes = get_tree().get_nodes_in_group(skybox_group_name)
+	
+	if skybox_nodes.size() > 0:
+		print("✓ Found ", skybox_nodes.size(), " skybox node(s) - will preserve visibility")
+	else:
+		print("⚠ No skybox nodes found in group '", skybox_group_name, "'")
+		print("  Add your skybox to group '", skybox_group_name, "' in Node → Groups")
 
 func _print_color_mode_status():
 	"""Print which color mode is active based on priority"""
@@ -260,8 +282,8 @@ func trigger_pulse(channel_number: int = 0, velocity: int = 127, note: int = 60)
 	# Clamp intensity
 	intensity = clamp(intensity, 0.0, 1.5)  # Allow over 1.0 for extra punch
 	
-	# Set pulse progress (will decay over time)
-	pulse_progress = max(pulse_progress, intensity)
+	# Set target for lerping (not instant)
+	target_pulse_progress = intensity
 	
 	# Handle color flash with PRIORITY SYSTEM
 	if enable_color_flash:
@@ -292,7 +314,7 @@ func trigger_pulse(channel_number: int = 0, velocity: int = 127, note: int = 60)
 		
 		# Flash background if enabled
 		if enable_background_pulse:
-			background_flash_progress = intensity
+			target_background_flash = intensity
 
 func _get_rotator_color() -> Color:
 	"""Get the current color from the rotator based on hue progress"""
@@ -330,12 +352,27 @@ func _process(delta):
 	# Update color rotator (only if enabled)
 	_update_color_rotator(delta)
 	
-	# Decay pulse progress - using lerp for smoother, longer decay
-	if pulse_progress > 0.0:
-		pulse_progress = lerp(pulse_progress, 0.0, delta / pulse_release)
+	# LERP pulse progress towards target
+	if pulse_progress < target_pulse_progress:
+		# Fading in - use attack time
+		pulse_progress = lerp(pulse_progress, target_pulse_progress, delta / max(pulse_attack, 0.001))
+	else:
+		# Fading out - use release time
+		pulse_progress = lerp(pulse_progress, 0.0, delta / max(pulse_release, 0.001))
+		target_pulse_progress = lerp(target_pulse_progress, 0.0, delta / max(pulse_release, 0.001))
 	
-	# Smoothly interpolate to target color - faster for snappy response
-	current_channel_color = current_channel_color.lerp(target_channel_color, delta * 15.0)
+	# Smoothly interpolate to target color
+	var color_speed = delta / max(pulse_attack, 0.001)
+	current_channel_color = current_channel_color.lerp(target_channel_color, color_speed)
+	
+	# LERP background flash progress
+	if background_flash_progress < target_background_flash:
+		# Fading in - use attack time
+		background_flash_progress = lerp(background_flash_progress, target_background_flash, delta / max(pulse_attack, 0.001))
+	else:
+		# Fading out - use release time for consistency
+		background_flash_progress = lerp(background_flash_progress, 0.0, delta / max(pulse_release, 0.001))
+		target_background_flash = lerp(target_background_flash, 0.0, delta / max(pulse_release, 0.001))
 	
 	# Apply all settings based on pulse progress
 	var t = pulse_progress
@@ -365,15 +402,16 @@ func _process(delta):
 	if enable_ambient_pulse:
 		environment.ambient_light_energy = lerp(base_ambient_energy, pulse_ambient_energy, t)
 	
-	# Background flash - Only if enabled
-	if enable_background_pulse and background_flash_progress > 0.0:
-		background_flash_progress = max(0.0, background_flash_progress - delta / background_flash_duration)
+	# Background flash - only if enabled
+	if enable_background_pulse and background_flash_progress > 0.01:
 		var flash_color = current_channel_color * color_flash_intensity * background_flash_progress
 		environment.background_color = base_background_color + flash_color
+	else:
+		environment.background_color = base_background_color
 
 ## Manually trigger a pulse with specific intensity (0.0 to 1.5)
 func pulse_on_beat(intensity: float = 1.0):
-	pulse_progress = clamp(intensity, 0.0, 1.5)
+	target_pulse_progress = clamp(intensity, 0.0, 1.5)
 
 ## Dynamically adjust base values during runtime. Set to -1.0 to skip that parameter.
 func set_base_values(glow: float = -1.0, exposure: float = -1.0, contrast: float = -1.0, saturation: float = -1.0):
@@ -400,5 +438,5 @@ func set_pulse_values(glow: float = -1.0, exposure: float = -1.0, contrast: floa
 ## Force a specific color flash, temporarily overriding the current color mode
 func force_color(color: Color, duration: float = 0.5):
 	target_channel_color = color
-	background_flash_progress = 1.0
+	target_background_flash = 1.0
 	background_flash_duration = duration

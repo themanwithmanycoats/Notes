@@ -1,6 +1,5 @@
 res://Main.tscn
 res://Lighting/Lighting affects.tres
 res://skybox.gdshader
-res://add.gd
-res://Scripts/Enemy Spawn.gd
 res://lighting_controller.gd
+res://Scripts/Enemy Spawn.gd

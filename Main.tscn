@@ -1,15 +1,15 @@
-[gd_scene load_steps=18 format=3 uid="uid://bmu2qwoojvium"]
+[gd_scene load_steps=19 format=3 uid="uid://bmu2qwoojvium"]
 
 [ext_resource type="Script" uid="uid://dyuu15dw6y7jv" path="res://Objects/Player.gd" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://dk4nhc3evagio" path="res://Scripts/add.gd" id="1_trn2v"]
-[ext_resource type="Environment" uid="uid://deqfvhcwhyb4t" path="res://Lighting/Lighting affects.tres" id="2_lgr22"]
+[ext_resource type="Environment" uid="uid://deqfvhcwhyb4t" path="res://Lighting/Lighting affects.tres" id="2_trn2v"]
 [ext_resource type="Script" uid="uid://bwfxgg6a41375" path="res://arlez80-godot-midi-player-g4-79a7ef10a5d4/addons/midi/MidiPlayer.gd" id="2_uu6xs"]
 [ext_resource type="Script" uid="uid://cx1sy1a650ew1" path="res://Scripts/Enemy Spawn.gd" id="3_cm0pq"]
 [ext_resource type="AudioStream" uid="uid://5p04mhqqcxq7" path="res://MP3/Pattern 50.wav" id="5_3dxm6"]
-[ext_resource type="PackedScene" uid="uid://crsp0oaxxtm42" path="res://Objects/Enamy idle.tscn" id="6_03owx"]
+[ext_resource type="PackedScene" uid="uid://crsp0oaxxtm42" path="res://Objects/Enamy idle.tscn" id="6_wkp8b"]
 [ext_resource type="Shader" uid="uid://dekm0l8ak5xhi" path="res://skybox.gdshader" id="7_03owx"]
-[ext_resource type="VideoStream" uid="uid://dsk7fsurur7ha" path="res://videos/Eye ey ey ey.ogv" id="7_trn2v"]
-[ext_resource type="Script" uid="uid://bh0hcqy5310i0" path="res://lighting_controller.gd" id="10_wkp8b"]
+[ext_resource type="VideoStream" uid="uid://b8ewqilcr7qex" path="res://videos/Eye ey ey ey.ogv" id="7_trn2v"]
+[ext_resource type="Script" uid="uid://bh0hcqy5310i0" path="res://lighting_controller.gd" id="8_03owx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glv2v"]
 albedo_color = Color(0.32549, 0.192157, 1, 1)
@@ -31,11 +31,14 @@ shader = ExtResource("7_03owx")
 shader_parameter/base_brightness = 0.15
 shader_parameter/glow_intensity = 2.5
 shader_parameter/glow_color = Vector3(0.2, 0.6, 1)
+shader_parameter/max_brightness = 0.8
 
 [sub_resource type="SphereMesh" id="SphereMesh_trn2v"]
 material = SubResource("ShaderMaterial_lgr22")
 radius = 1000.0
 height = 1000.0
+
+[sub_resource type="GDScript" id="GDScript_03owx"]
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_trn2v")
@@ -49,7 +52,7 @@ shadow_enabled = true
 sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("2_lgr22")
+environment = ExtResource("2_trn2v")
 
 [node name="Floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.758238, 1.69672, -6.32837)
@@ -125,6 +128,7 @@ script = ExtResource("2_uu6xs")
 file = "res://Midi/Test .mid"
 playing = true
 volume_db = -80.0
+loop = true
 soundfont = "res://Midi/Fireninja_s_Kayserburg_Piano.sf2"
 
 [node name="Cunductor" type="Node3D" parent="." node_paths=PackedStringArray("midi_player", "player")]
@@ -132,7 +136,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.07436, 0)
 script = ExtResource("3_cm0pq")
 midi_player = NodePath("../MidiPlayer")
 player = NodePath("../Player")
-enemy_scene = ExtResource("6_03owx")
+enemy_scene = ExtResource("6_wkp8b")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.16737, -2.23943)
@@ -153,17 +157,25 @@ loop = true
 [node name="sky box" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("SphereMesh_trn2v")
+script = SubResource("GDScript_03owx")
 
 [node name="Lighting Controller" type="Node" parent="." node_paths=PackedStringArray("world_environment", "midi_player")]
-script = ExtResource("10_wkp8b")
+script = ExtResource("8_03owx")
 world_environment = NodePath("../WorldEnvironment")
 midi_player = NodePath("../MidiPlayer")
-base_glow_intensity = 0.5
-pulse_glow_intensity = 1.0
-base_brightness = 5.0
-pulse_brightness = 10.0
-channel_colors = Array[Color]([])
-enable_color_rotator = false
 note_pitch_affects_color = true
-pulse_attack = 2.22
-pulse_release = 0.6
+enable_fog_pulse = false
+enable_ambient_pulse = false
+base_background_color = Color(1, 1, 1, 1)
+pulse_release = 0.2
+velocity_sensitivity = 3.0
+disable_skybox_override = false
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.00389213, 0.999992, 0, -0.999992, 0.00389213, 0, 7.01198, 0)
+light_color = Color(0.14956, 0.535648, 0.661662, 1)
+light_energy = 16.0
+light_indirect_energy = 6.284
+light_volumetric_fog_energy = 0.0
+spot_range = 7.77661
+spot_angle = 45.4454
